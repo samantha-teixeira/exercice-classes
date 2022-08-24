@@ -16,8 +16,8 @@ formation1.ajouterStagiaire(new Stagiaire("Martin", "Luther", "1 rue du poney"))
 console.log(formation1);
 
 
-let boutonCreer = document.querySelector("#btncreer");
-boutonCreer.addEventListener('click', creerFormation);
+let boutonEnregistrer = document.querySelector("#btnenregistrer");
+boutonEnregistrer.addEventListener('click', creerFormation);
 var formation;
 
 function creerFormation() 
@@ -27,6 +27,26 @@ function creerFormation()
     let dateFin = document.querySelector("#datefin").value;
     formation = new Formation(intitule, new Date(dateDebut), new Date(dateFin));
     console.log(formation)
+
+    let formulaireStagiaire = document.querySelector("#formulaireStagiaire")
+    formulaireStagiaire.style.display= "block";
+
+    console.log(formation.intitule)
+    let choixformation = document.querySelector("#choixformation");
+    choixformation.innerHTML = `${formation.intitule}`;
+}
+
+let boutonAjouter = document.querySelector("#btnajouter");
+boutonAjouter.addEventListener('click', ajouterStagiaire);
+let stagiaire;
+
+function ajouterStagiaire()
+{
+    let nom = document.querySelector("#nom").value;
+    let prenom = document.querySelector("#prenom").value;
+    let adresse = document.querySelector("#adresse").value;
+    stagiaire = new Stagiaire(nom,prenom,adresse);
+    formation.ajouterStagiaire(new Stagiaire(nom,prenom,adresse));
 }
 
 let boutonAfficher = document.querySelector("#btnafficher");
@@ -38,7 +58,5 @@ function afficherFormation()
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     affichage.innerHTML = `la formation ${formation.intitule} 
     commencera le ${formation.dateDebut.toLocaleDateString('fr-FR', options)} 
-    et se terminera le ${formation.dateFin.toLocaleDateString('fr-FR', options)}`;
-    let formulaireStagiaire = document.querySelector("#formulaireStagiaire")
-    formulaireStagiaire.style.display= "block";
+    et se terminera le ${formation.dateFin.toLocaleDateString('fr-FR', options)}`; 
 }
