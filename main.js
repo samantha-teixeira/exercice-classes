@@ -32,8 +32,8 @@ function creerFormation()
     formulaireStagiaire.style.display= "block";
 
     console.log(formation.intitule)
-    let choixformation = document.querySelector("#choixformation");
-    choixformation.innerHTML = `${formation.intitule}`;
+    let choixformation = document.querySelector("#formation");
+    choixformation.innerHTML += `<option value="${formation.intitule}" id="${formation.intitule}">${formation.intitule}</option>`;
 }
 
 let boutonAjouter = document.querySelector("#btnajouter");
